@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'statistiques.apps.StatistiquesConfig',
     'mainConf.apps.MainconfConfig',
     'clientelle.apps.ClientelleConfig',
+    'corsheaders',
     'master.apps.MasterConfig',
     'rest_framework',
     'django_admin_generator',
@@ -56,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'Au_resto.urls'
@@ -78,6 +81,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Au_resto.wsgi.application'
 
+CORS_ORIGIN_ALLOW_ALL=True
+
+CORS_ORIGIN_WHITELIST = [
+    "http://127.0.0.1:8000",
+]
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
