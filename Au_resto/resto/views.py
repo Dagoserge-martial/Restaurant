@@ -1,9 +1,15 @@
 from django.shortcuts import render
-
+from .models import *
 # Create your views here.
 
 def Home(request):
-    return render(request, 'pages/index.html' )
+    #special = Specialite.objects.filter(titre=special)
+    special = Specialite.objects.filter(statut=True)
+    data = {
+        #'specialite': specialite,
+        'special': special,
+    }
+    return render(request, 'pages/index.html', data)
 
 def Menu(request):
     return render(request, 'pages/menu.html')
