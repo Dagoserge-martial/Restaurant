@@ -10,6 +10,9 @@ class Service(models.Model):
     statut = models.BooleanField(default=True)
     date_add = models.DateTimeField(auto_now_add=True)
     date_upd = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.nom
 
 class Specialite(models.Model):
     titre = models.CharField(max_length=255)
@@ -52,6 +55,7 @@ class Plat(models.Model):
     prix = models.IntegerField()
     image_menu = models.ImageField(upload_to='plat', blank=True)
     image_special = models.ImageField(upload_to='plat', blank=True)
+    isSpecial = models.BooleanField(default=False)
 
     statut = models.BooleanField(default=False)
     date_add = models.DateTimeField(auto_now_add=True)
@@ -72,11 +76,11 @@ class Place(models.Model):
 
 class Reservation(models.Model):
     place = models.OneToOneField(Place, on_delete=models.CASCADE,primary_key=True,related_name='placeReservable')
-    name=models.CharField(max_length=255)
-    email=models.EmailField(unique=True)
-    phone=models.CharField(max_length=255)
-    date=models.CharField(max_length=255)
-    time=models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
+    phone = models.CharField(max_length=255)
+    date = models.CharField(max_length=255)
+    time = models.CharField(max_length=255)
     person_number = models.IntegerField()
 
     statut = models.BooleanField(default=False)

@@ -14,7 +14,7 @@ async def get_from_api(url):
 def visitor_ip_address(request):
 
     ip=request.client_ip
-    if ip=='127.0.0.1':
+    if ip=='154.0.27.173':
         req = requests.get('https://api.ipify.org?format=json')
         data = json.loads(req.text)
         ip = data['ip']
@@ -39,6 +39,12 @@ def visitor_ip_address(request):
                 longitude=longitude
             )
             client.save()
+            print(ip)
+            print(pays)
+            print(ville)
+            print(reseau)
+            print(continent)
+            print(latitude)
     except :
         print('error')
     return {'ip':ip}

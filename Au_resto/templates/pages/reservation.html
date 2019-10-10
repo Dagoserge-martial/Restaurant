@@ -17,6 +17,7 @@
                                     </h2>
                                 </div>
                                 <form method="post" name="contact-us" action="">
+                                    {% csrf_token %}
                                     <div class="row">
                                         <div class="col-md-12 form-group">
                                             <input type="text" class="form-control" id="name" name="name" placeholder="Name">
@@ -25,11 +26,11 @@
                                             <input type="text" class="form-control" id="email" name="email" placeholder="Email">
                                         </div>
                                         <div class="col-md-12 form-group">
-                                            <input type="number" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone">
+                                            <input type="number" class="form-control" id="phoneNumber" name="phone" placeholder="Phone">
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" placeholder="Date" />
+                                                <input type="text" name="date" class="form-control datetimepicker-input" data-target="#datetimepicker4" placeholder="Date" />
                                                 <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
                                                     <div class="input-group-text">
                                                         <span class="lnr lnr-calendar-full"></span>
@@ -40,7 +41,7 @@
 
                                         <div class="col-md-6 form-group">
                                             <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3" placeholder="Time" />
+                                                <input type="text" name="time" class="form-control datetimepicker-input" data-target="#datetimepicker3" placeholder="Time" />
                                                 <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
                                                     <div class="input-group-text">
                                                         <span class="lnr lnr-clock"></span>
@@ -50,7 +51,7 @@
                                         </div>
 
                                         <div class="col-md-12 form-group">
-                                            <select class="form-control" id="selectPerson">
+                                            <select class="form-control" name="person" id="selectPerson">
                                                 <option></option>
                                                 <option>1</option>
                                                 <option>2</option>
@@ -59,10 +60,20 @@
                                                 <option>5</option>
                                             </select>
                                         </div>
-                            
                                         <div class="col-md-12 form-group">
-                                            <textarea class="form-control" id="message" name="message" rows="6" placeholder="Your Message ..."></textarea>
+                                            <select class="form-control" name="place" id="selectPlace">
+                                                <option></option>
+                                                <option>A</option>
+                                                <option>B</option>
+                                                <option>C</option>
+                                                <option>D</option>
+                                                <option>E</option>
+                                            </select>
                                         </div>
+                            
+                                        <!-- <div class="col-md-12 form-group">
+                                            <textarea class="form-control" id="message" name="message" rows="6" placeholder="Your Message ..."></textarea>
+                                        </div> -->
                                         <div class="col-md-12 text-center">
                                             <button class="btn btn-primary btn-shadow btn-lg" type="submit" name="submit">Send Message</button>
                                         </div>

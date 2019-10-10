@@ -73,15 +73,15 @@
                           <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
                           <h3 class="mt-5">Special Recipe</h3>
                           <div class="row">
-                              {% for speciale in special %}
-                              {% for spec in speciale.platspecial.all %}
+                              {% for plats in plat %}
+                              {% if forloop.counter <= 3 %}
                               <div class="col-4">
                                   <a href="#" class="thumb-menu">
-                                      <img class="img-fluid img-cover" src="{{ spec.image_special.url }}" />
-                                      <h6>{{ spec. }}</h6>
+                                      <img class="img-fluid img-cover" src="/static/img/hero-1.jpg" />
+                                      <h6>{{ plats.specialite }} {{ plats.categorie }}</h6>
                                   </a>
                               </div>
-                              {% endfor %}
+                              {% endif %}
                               {% endfor %}
                           </div>
                       </div>
@@ -102,34 +102,47 @@
                       Special Dishes
                   </h2>
               </div>
+              {% for spec in platSpec %}
+              {% if forloop.counter == 1 %}
               <div class="row mt-5">
                   <div class="col-lg-5 col-md-6 align-self-center py-5">
-                      <h2 class="special-number">01.</h2>
+                        
+                      <h2 class="special-number">0{{ forloop.counter }}.</h2>
+                        
                       <div class="dishes-text">
-                          <h3><span>Beef</span><br> Steak Sauce</h3>
-                          <p class="pt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, ea vero alias perferendis quas animi doloribus voluptates. Atque explicabo ea nesciunt provident libero qui eum, corporis esse quos excepturi soluta?</p>
-                          <h3 class="special-dishes-price">$15.00</h3>
+                          <h3><span>{{ spec.categorie }}</span><br>{{ spec.titre }}</h3>
+                          <p class="pt-3">{{ spec.description }}</p>
+                          <h3 class="special-dishes-price">${{ spec.prix }}</h3>
                           <a href="#" class="btn-primary mt-3">book a table</a>
                       </div>
                   </div>
                   <div class="col-lg-5 offset-lg-2 col-md-6 align-self-center mt-4 mt-md-0">
-                      <img src="/static/img/steak.jpg" alt="" class="img-fluid shadow w-100">
+                      <img src="{{ spec.image_special.url }}" alt="" class="img-fluid shadow w-100">
                   </div>
               </div>
+                {% endif %}
+                {% endfor %}
+
+                {% for spec in platSpec %}
+                {% if forloop.counter == 2 %}
               <div class="row mt-5">
                   <div class="col-lg-5 col-md-6 align-self-center order-2 order-md-1 mt-4 mt-md-0">
-                      <img src="/static/img/salmon-zucchini.jpg" alt="" class="img-fluid shadow w-100">
+                      <img src="{{ spec.image_special.url }}" alt="" class="img-fluid shadow w-100">
                   </div>
                   <div class="col-lg-5 offset-lg-2 col-md-6 align-self-center order-1 order-md-2 py-5">
-                      <h2 class="special-number">02.</h2>
-                      <div class="dishes-text">
-                          <h3><span>Salmon</span><br> Zucchini</h3>
-                          <p class="pt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, accusamus culpa quam amet ipsam odit ea doloremque accusantium quo, itaque possimus eius. In a quis quibusdam omnis atque vero dolores!</p>
-                          <h3 class="special-dishes-price">$12.00</h3>
-                          <a href="#" class="btn-primary mt-3">book a table <span><i class="fa fa-long-arrow-right"></i></span></a>
+                        
+                      <h2 class="special-number">0{{ forloop.counter }}.</h2>
+                        
+                        <div class="dishes-text">
+                          <h3><span>{{ spec.categorie }}</span><br>{{ spec.titre }}</h3>
+                          <p class="pt-3">{{ spec.description }}</p>
+                          <h3 class="special-dishes-price">${{ spec.prix }}</h3>
+                          <a href="#" class="btn-primary mt-3">book a table</a>
                       </div>
                   </div>
               </div>
+              {% endif %}
+              {% endfor %}
           </div>
       </div>
   </section>
@@ -150,7 +163,36 @@
                   </div>
               </div>
               <div class="row">
+                    {% for sev in service %}
+                    {% if forloop.counter <= 3 %}
                   <div class="col-lg-4 menu-wrap">
+                      <div class="heading-menu">
+                          <h3 class="text-center mb-5">{{ sev.nom }}</h3>
+                      </div>
+                        {% for plats in plat %}
+                        {% if forloop.counter <= 2 %}
+                      <div class="menus d-flex align-items-center">
+                          <div class="menu-img rounded-circle">
+                              <img class="img-fluid" src="{{ plats.image_special.url }}" alt="">
+                          </div>
+                          <div class="text-wrap">
+                              <div class="row align-items-start">
+                                  <div class="col-8">
+                                      <h4>{{ plats.titre }}</h4>
+                                  </div>
+                                  <div class="col-4">
+                                      <h4 class="text-muted menu-price">${{ plats.prix }}</h4>
+                                  </div>
+                              </div>
+                              <p>{{ plats.categorie }}, {{ plats.specialite }}</p>
+                          </div>
+                      </div>
+                        {% endif %}
+                        {% endfor %}
+                  </div>
+                    {% endif %}
+                    {% endfor %}
+                  <!-- <div class="col-lg-4 menu-wrap">
                       <div class="heading-menu">
                           <h3 class="text-center mb-5">Breakfast</h3>
                       </div>
@@ -256,61 +298,7 @@
                               <p>Meat Ball, Mie</p>
                           </div>
                       </div>
-                  </div>
-  
-                  <div class="col-lg-4 menu-wrap">
-                      <div class="heading-menu">
-                          <h3 class="text-center mb-5">Breakfast</h3>
-                      </div>
-                      <div class="menus d-flex align-items-center">
-                          <div class="menu-img rounded-circle">
-                              <img class="img-fluid" src="/static/img/breakfast-1.jpg" alt="">
-                          </div>
-                          <div class="text-wrap">
-                              <div class="row align-items-start">
-                                  <div class="col-8">
-                                      <h4>Egg Sandwich</h4>
-                                  </div>
-                                  <div class="col-4">
-                                      <h4 class="text-muted menu-price">$30</h4>
-                                  </div>
-                              </div>
-                              <p>Meat Ball, Mie</p>
-                          </div>
-                      </div>
-                      <div class="menus d-flex align-items-center">
-                          <div class="menu-img rounded-circle">
-                              <img class="img-fluid" src="/static/img/breakfast-1.jpg" alt="">
-                          </div>
-                          <div class="text-wrap">
-                              <div class="row align-items-start">
-                                  <div class="col-8">
-                                      <h4>Egg Sandwich</h4>
-                                  </div>
-                                  <div class="col-4">
-                                      <h4 class="text-muted menu-price">$30</h4>
-                                  </div>
-                              </div>
-                              <p>Meat Ball, Mie</p>
-                          </div>
-                      </div>
-                      <div class="menus d-flex align-items-center">
-                          <div class="menu-img rounded-circle">
-                              <img class="img-fluid" src="/static/img/breakfast-1.jpg" alt="">
-                          </div>
-                          <div class="text-wrap">
-                              <div class="row align-items-start">
-                                  <div class="col-8">
-                                      <h4>Egg Sandwich</h4>
-                                  </div>
-                                  <div class="col-4">
-                                      <h4 class="text-muted menu-price">$30</h4>
-                                  </div>
-                              </div>
-                              <p>Meat Ball, Mie</p>
-                          </div>
-                      </div>
-                  </div>
+                  </div> -->
               </div>
           </div>
       </div>
@@ -361,9 +349,11 @@
                   </h2>
               </div>
               <div class="row">
+                    {% for team in master %}
+                    {% if forloop.counter <= 3 %}
                   <div class="col-md-4">
                       <div class="team-card mb-5">
-                          <img class="img-fluid" src="/static/img/chef-1.jpg" alt="">
+                          <img class="img-fluid" src="{{ team.image.url }}" alt="">
                           <div class="team-desc">
                               <h4 class="mb-0">Aaron Patel</h4>
                               <p class="mb-1">CEO</p>
@@ -392,68 +382,8 @@
                           </div>
                       </div>
                   </div>
-                  <div class="col-md-4">
-                      <div class="team-card mb-5">
-                          <img class="img-fluid" src="/static/img/chef-2.jpg" alt="">
-                          <div class="team-desc">
-                              <h4 class="mb-0">Daniel Tebas</h4>
-                              <p class="mb-1">Chef</p>
-                              <ul class="list-inline mb-0 team-social-links">
-                                  <li class="list-inline-item">
-                                      <a href="#">
-                                          <i class="fab fa-facebook-f"></i>
-                                      </a>
-                                  </li>
-                                  <li class="list-inline-item">
-                                      <a href="#">
-                                          <i class="fab fa-twitter"></i>
-                                      </a>
-                                  </li>
-                                  <li class="list-inline-item">
-                                      <a href="#">
-                                          <i class="fab fa-instagram"></i>
-                                      </a>
-                                  </li>
-                                  <li class="list-inline-item">
-                                      <a href="#">
-                                          <i class="fab fa-google-plus-g"></i>
-                                      </a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-md-4">
-                      <div class="team-card mb-5">
-                          <img class="img-fluid" src="/static/img/chef-3.jpg" alt="">
-                          <div class="team-desc">
-                              <h4 class="mb-0">Jon Snow</h4>
-                              <p class="mb-1">Chef</p>
-                              <ul class="list-inline mb-0 team-social-links">
-                                  <li class="list-inline-item">
-                                      <a href="#">
-                                          <i class="fab fa-facebook-f"></i>
-                                      </a>
-                                  </li>
-                                  <li class="list-inline-item">
-                                      <a href="#">
-                                          <i class="fab fa-twitter"></i>
-                                      </a>
-                                  </li>
-                                  <li class="list-inline-item">
-                                      <a href="#">
-                                          <i class="fab fa-instagram"></i>
-                                      </a>
-                                  </li>
-                                  <li class="list-inline-item">
-                                      <a href="#">
-                                          <i class="fab fa-google-plus-g"></i>
-                                      </a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
+                    {% endif %}
+                    {% endfor %}
               </div>
           </div>
       </div>
@@ -473,6 +403,7 @@
                           </h2>
                       </div>
                       <form method="post" name="contact-us" action="">
+                            {% csrf_token %}
                           <div class="row">
                               <div class="col-md-12 form-group">
                                   <input type="text" class="form-control" id="name" name="name" placeholder="Name">
@@ -481,11 +412,11 @@
                                   <input type="text" class="form-control" id="email" name="email" placeholder="Email">
                               </div>
                               <div class="col-md-12 form-group">
-                                  <input type="number" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone">
+                                  <input type="number" class="form-control" id="phoneNumber" name="phone" placeholder="Phone">
                               </div>
                               <div class="col-md-6 form-group">
                                   <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                                      <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" placeholder="Date" />
+                                      <input type="text" name="date" class="form-control datetimepicker-input" data-target="#datetimepicker4" placeholder="Date" />
                                       <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
                                           <div class="input-group-text">
                                               <span class="lnr lnr-calendar-full"></span>
@@ -496,7 +427,7 @@
   
                               <div class="col-md-6 form-group">
                                   <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-                                      <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3" placeholder="Time" />
+                                      <input type="text" name="time" class="form-control datetimepicker-input" data-target="#datetimepicker3" placeholder="Time" />
                                       <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
                                           <div class="input-group-text">
                                               <span class="lnr lnr-clock"></span>
@@ -506,7 +437,7 @@
                               </div>
   
                               <div class="col-md-12 form-group">
-                                  <select class="form-control" id="selectPerson">
+                                  <select class="form-control" name="person" id="selectPerson">
                                       <option></option>
                                       <option>1</option>
                                       <option>2</option>
@@ -515,10 +446,20 @@
                                       <option>5</option>
                                   </select>
                               </div>
-                   
                               <div class="col-md-12 form-group">
+                                <select class="form-control" name="place" id="selectPerson">
+                                    <option></option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                   
+                              <!-- <div class="col-md-12 form-group">
                                   <textarea class="form-control" id="message" name="message" rows="6" placeholder="Your Message ..."></textarea>
-                              </div>
+                              </div> -->
                               <div class="col-md-12 text-center">
                                   <button class="btn btn-primary btn-shadow btn-lg" type="submit" name="submit">Send Message</button>
                               </div>
