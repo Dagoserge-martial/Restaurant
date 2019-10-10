@@ -37,6 +37,8 @@ urlpatterns = [
     path('menu', views.Menu ,name='menu'),
     path('team', views.Team ,name='team'),
     path('about', views.About ,name='about'),
+    path('special', views.Special ,name='special'),
+    path('reservation', views.Reservation ,name='reservation'),
 ]
 
 urlpatterns += router.urls

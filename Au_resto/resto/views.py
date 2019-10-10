@@ -19,3 +19,10 @@ def Team(request):
 
 def About(request):
     return render(request, 'pages/about.html')
+
+def Special(request):
+    return render(request, 'pages/special-dishes.html')
+
+def Reservation(request):
+    return render(request, 'pages/reservation.html')
+
