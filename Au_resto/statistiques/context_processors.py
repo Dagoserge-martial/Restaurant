@@ -36,7 +36,8 @@ def visitor_ip_address(request):
                 continent=continent,
                 reseau=reseau,
                 latitude=latitude,
-                longitude=longitude
+                longitude=longitude,
+                #context processor
             )
             client.save()
             print(ip)
